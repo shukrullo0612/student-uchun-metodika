@@ -1,0 +1,90 @@
+.wordwall-page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #e8fff1 0%, #e8f3ff 60%, #fff0f6 100%);
+  padding: 24px;
+}
+
+.wordwall-page-shell {
+  width: min(1120px, 96vw);
+  margin: 0 auto;
+}
+
+.wordwall-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 16px 34px rgba(15, 143, 109, 0.12);
+}
+
+.wordwall-page-header h1 {
+  margin: 6px 0 4px;
+  font-size: 36px;
+  line-height: 1.05;
+}
+
+.wordwall-page-header p {
+  margin: 0;
+  color: #54656d;
+}
+
+.wordwall-back-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #0f8f6d;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.wordwall-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.wordwall-page-switch-btn {
+  border: 1px solid rgba(16, 33, 39, 0.16);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #203040;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(16, 33, 39, 0.08);
+}
+
+.wordwall-page-switch-btn:hover {
+  filter: brightness(0.98);
+}
+
+.wordwall-status-box {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #4f6169;
+  box-shadow: 0 10px 22px rgba(16, 33, 39, 0.08);
+}
+
+@media (max-width: 768px) {
+  .wordwall-page {
+    padding: 12px;
+  }
+
+  .wordwall-page-header {
+    padding: 16px;
+    flex-direction: column;
+  }
+
+  .wordwall-page-header h1 {
+    font-size: 28px;
+  }
+}

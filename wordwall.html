@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordwall | EduSkill Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="wordwall.css" />
+  </head>
+  <body class="wordwall-page">
+    <main class="wordwall-page-shell">
+      <header class="wordwall-page-header">
+        <div>
+          <a class="wordwall-back-link" href="student.html">← O'quvchi paneliga qaytish</a>
+          <h1>Wordwall</h1>
+          <p>Admin oynasiga o'xshash content yaratish sahifasi.</p>
+        </div>
+        <div class="wordwall-page-header-actions">
+          <button id="wordwall-generate-ai-btn" class="wordwall-ai-btn" type="button" disabled>
+            Generate With AI
+          </button>
+          <div class="wordwall-template-pill">
+            <span class="wordwall-template-icon">🔤</span>
+            <span id="wordwall-template-name">Anagram</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="wordwall-workspace">
+        <div class="wordwall-workspace-top">
+          <div class="wordwall-steps" aria-label="Wordwall progress">
+            <span class="wordwall-step">Pick a template</span>
+            <span class="wordwall-step-sep">›</span>
+            <span class="wordwall-step active">Enter content</span>
+            <span class="wordwall-step-sep">›</span>
+            <span class="wordwall-step">Play</span>
+          </div>
+
+          <div class="wordwall-top-actions">
+            <button id="wordwall-switch-template-btn" class="wordwall-page-switch-btn" type="button">
+              Template o'zgartirish
+            </button>
+          </div>
+        </div>
+
+        <div class="wordwall-editor-box">
+          <label class="wordwall-field">
+            Activity Title
+            <input id="wordwall-title-input" type="text" value="Untitled1" maxlength="120" />
+          </label>
+
+          <div class="wordwall-clue-toggle" role="radiogroup" aria-label="Clue mode">
+            <label>
+              <input type="radio" name="wordwall-clue-mode" value="without" checked />
+              Without clues
+            </label>
+            <label>
+              <input type="radio" name="wordwall-clue-mode" value="with" />
+              With clues
+            </label>
+          </div>
+
+          <div class="wordwall-columns">
+            <span>Word</span>
+            <span id="wordwall-clue-head" class="wordwall-hidden">Clue</span>
+          </div>
+
+          <div id="wordwall-word-rows" class="wordwall-word-rows"></div>
+
+          <button id="add-wordwall-item-btn" class="wordwall-add-btn" type="button">+ Add a new word</button>
+          <p class="wordwall-range-note">min 1 max 100</p>
+
+          <div class="wordwall-footer">
+            <button id="create-wordwall-set-btn" class="wordwall-done-btn" type="button">Done</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="wordwall-status" class="wordwall-status-box">Hozircha wordwall draft yaratilmagan.</section>
+    </main>
+
+    <script src="wordwall.js"></script>
+  </body>
+</html>

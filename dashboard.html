@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'qituvchi paneli | EduSkill Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body class="dashboard-body">
+    <div id="global-loader" class="global-loader hidden" aria-live="polite" aria-busy="true">
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <span id="global-loader-text">Yuklanmoqda...</span>
+    </div>
+
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span class="logo-mark">◎</span>
+          <span>EduSkill Lab</span>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="#home" class="nav-item active" data-section="home">
+            <span>🏠</span> Bosh sahifa
+          </a>
+          <a href="#courses" class="nav-item" data-section="courses">
+            <span>📚</span> Kurslar
+          </a>
+          <a href="#students" class="nav-item" data-section="students">
+            <span>👥</span> O'quvchilar
+          </a>
+          <a href="#assignments" class="nav-item" data-section="assignments">
+            <span>✍️</span> Topshiriqlar
+          </a>
+          <a href="#quiz" class="nav-item" data-section="quiz">
+            <span>🧩</span> Quizlar
+          </a>
+          <a href="#kahoot" class="nav-item" data-section="kahoot">
+            <span>⚡</span> Kahoot
+          </a>
+          <a href="#wordwall" class="nav-item" data-section="wordwall">
+            <span>🧠</span> Wordwall
+          </a>
+          <a href="#reports" class="nav-item" data-section="reports">
+            <span>📊</span> Natijalar
+          </a>
+          <a href="#settings" class="nav-item" data-section="settings">
+            <span>⚙️</span> Sozlamalar
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="logout-btn">Chiqish</button>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <h1 id="section-title">Bosh sahifa</h1>
+          <div class="user-info">
+            <span id="user-role" class="user-role-badge"></span>
+            <span id="user-email"></span>
+          </div>
+        </header>
+
+        <section id="home" class="section active">
+          <div class="welcome-card">
+            <h2>Xush kelibsiz!</h2>
+            <p>Elektron ta'lim resurslari asosida mustaqil ishlash ko'nikmalarini rivojlantiring.</p>
+          </div>
+          <div class="dashboard-grid">
+            <div class="stat-card" data-section="students">
+              <span class="stat-icon">👥</span>
+              <div>
+                <h3>24</h3>
+                <p>O'quvchi</p>
+              </div>
+            </div>
+            <div class="stat-card" data-section="courses">
+              <span class="stat-icon">📚</span>
+              <div>
+                <h3>8</h3>
+                <p>Kurs</p>
+              </div>
+            </div>
+            <div class="stat-card" data-section="assignments">
+              <span class="stat-icon">✅</span>
+              <div>
+                <h3>156</h3>
+                <p>Tugatilgan topshiriq</p>
+              </div>
+            </div>
+            <div class="stat-card" data-section="reports">
+              <span class="stat-icon">📊</span>
+              <div>
+                <h3>92%</h3>
+                <p>O'rta natija</p>
+              </div>
+            </div>
+          </div>
+          <div class="tool-grid">
+            <div class="tool-card" data-section="quiz">
+              <div>
+                <h3>Quiz</h3>
+                <p>Tezkor testlar va baholash uchun.</p>
+              </div>
+              <span class="tool-badge">Yangi</span>
+            </div>
+            <div class="tool-card" data-section="wordwall">
+              <div>
+                <h3>Wordwall</h3>
+                <p>O'yinlar va moslashtirilgan mashqlar.</p>
+              </div>
+              <span class="tool-badge">Pro</span>
+            </div>
+            <div class="tool-card" data-section="kahoot">
+              <div>
+                <h3>Kahoot</h3>
+                <p>Interaktiv savollar va reyting.</p>
+              </div>
+              <span class="tool-badge">Live</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="courses" class="section">
+          <div class="section-header">
+            <h2>Kurslar</h2>
+            <button id="create-course-btn" class="btn primary">+ Yangi kurs</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kurs nomi</th>
+                  <th>O'quvchilar soni</th>
+                  <th>Statusu</th>
+                  <th>Harakatlar</th>
+                </tr>
+              </thead>
+              <tbody id="courses-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="students" class="section">
+          <div class="section-header">
+            <h2>O'quvchilar</h2>
+            <button id="create-student-btn" class="btn primary">+ O'quvchi qo'shish</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>F.I.O</th>
+                  <th>Email</th>
+                  <th>Guruh</th>
+                  <th>Ro'yxatga olingan sana</th>
+                  <th>Harakatlar</th>
+                </tr>
+              </thead>
+              <tbody id="students-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="assignments" class="section">
+          <div class="section-header">
+            <h2>Topshiriqlar</h2>
+            <button id="create-assignment-btn" class="btn primary">+ Yangi topshiriq</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Topshiriq nomi</th>
+                  <th>Kurs</th>
+                  <th>Topshiriq soni</th>
+                  <th>Jami</th>
+                  <th>Harakatlar</th>
+                </tr>
+              </thead>
+              <tbody id="assignments-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="quiz" class="section">
+          <div class="section-header">
+            <h2>Quiz yaratish</h2>
+            <button id="create-quiz-quick-btn" class="btn primary">+ Yangi papka</button>
+          </div>
+          <div class="builder-card">
+            <div id="quiz-list" class="entity-list"></div>
+          </div>
+        </section>
+
+        <section id="kahoot" class="section">
+          <div class="section-header">
+            <h2>Kahoot uslubida test</h2>
+            <button id="create-kahoot-session-btn" class="btn primary">+ Yangi sessiya</button>
+          </div>
+          <div class="builder-card kahoot-card">
+            <div class="builder-header">
+              <div>
+                <h3>Live savollar paneli</h3>
+                <p>Interaktiv savollar, vaqt va reyting.</p>
+              </div>
+              <span class="pill danger">Live</span>
+            </div>
+            <div class="kahoot-grid">
+              <div class="kahoot-question">
+                <h4>Savol</h4>
+                <textarea data-kahoot-question placeholder="Savolni kiriting"></textarea>
+                <div class="option-tiles editable">
+                  <label class="tile-input green">
+                    <span>A)</span>
+                    <input type="text" data-kahoot-option="A" placeholder="Variant A" />
+                  </label>
+                  <label class="tile-input blue">
+                    <span>B)</span>
+                    <input type="text" data-kahoot-option="B" placeholder="Variant B" />
+                  </label>
+                  <label class="tile-input yellow">
+                    <span>C)</span>
+                    <input type="text" data-kahoot-option="C" placeholder="Variant C" />
+                  </label>
+                  <label class="tile-input red">
+                    <span>D)</span>
+                    <input type="text" data-kahoot-option="D" placeholder="Variant D" />
+                  </label>
+                </div>
+              </div>
+              <div class="kahoot-side">
+                <h4>Sozlamalar</h4>
+                <label>Vaqt (sekund)
+                  <input type="number" value="30" />
+                </label>
+                <label>Ball
+                  <input type="number" value="100" />
+                </label>
+                <label>To'g'ri javob
+                  <select>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                  </select>
+                </label>
+                <button id="save-kahoot-question-btn" class="btn secondary">Savolni saqlash</button>
+              </div>
+            </div>
+            <div id="kahoot-session-list" class="entity-list"></div>
+            <div id="kahoot-monitor" class="entity-list"></div>
+            <div id="kahoot-current-question" class="entity-list"></div>
+            <div id="kahoot-leaderboard" class="entity-list"></div>
+          </div>
+        </section>
+
+        <section id="wordwall" class="section">
+          <div class="wordwall-workspace">
+            <div class="wordwall-workspace-top">
+              <div class="wordwall-steps" aria-label="Wordwall progress">
+                <span id="wordwall-step-template" class="wordwall-step active">Shablonni tanlang</span>
+                <span class="wordwall-step-sep">›</span>
+                <span id="wordwall-step-content" class="wordwall-step">Kontentni kiriting</span>
+                <span class="wordwall-step-sep">›</span>
+                <span class="wordwall-step">O'yin</span>
+              </div>
+
+              <div id="wordwall-top-actions" class="wordwall-top-actions wordwall-hidden">
+                <button id="wordwall-generate-ai-btn" class="wordwall-ai-btn" type="button" disabled>
+                  Generate With AI
+                </button>
+                <div class="wordwall-template-pill">
+                  <span class="wordwall-template-icon">🔤</span>
+                  <span id="wordwall-template-name">Anagramma</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="wordwall-template-gallery" aria-label="Wordwall shablonlari">
+              <div class="wordwall-template-gallery-head">
+                <h3>Standart shablonlar</h3>
+                <p>Kerakli o'yin turini tanlang</p>
+              </div>
+              <div class="wordwall-template-grid">
+                <button class="wordwall-template-card active" type="button" data-wordwall-template="anagram" data-wordwall-template-name="Anagramma" data-wordwall-template-icon="🔤">
+                  <span class="wordwall-template-card-icon">🔤</span>
+                  <span class="wordwall-template-card-title">Anagramma</span>
+                  <span class="wordwall-template-card-desc">Harflarni to'g'ri tartibga keltiring.</span>
+                </button>
+                <button class="wordwall-template-card" type="button" data-wordwall-template="random-wheel" data-wordwall-template-name="G'ildirakni aylantiring" data-wordwall-template-icon="🎡">
+                  <span class="wordwall-template-card-icon">🎡</span>
+                  <span class="wordwall-template-card-title">G'ildirakni aylantiring</span>
+                  <span class="wordwall-template-card-desc">Tasodifiy elementni g'ildirakdan tanlang.</span>
+                </button>
+                <button class="wordwall-template-card" type="button" data-wordwall-template="split-up" data-wordwall-template-name="Ajratib qo'yish" data-wordwall-template-icon="🧩">
+                  <span class="wordwall-template-card-icon">🧩</span>
+                  <span class="wordwall-template-card-title">Ajratib qo'yish</span>
+                  <span class="wordwall-template-card-desc">Elementlarni mos joylarga ajrating.</span>
+                </button>
+                <button class="wordwall-template-card" type="button" data-wordwall-template="match-up" data-wordwall-template-name="Moslashtirish" data-wordwall-template-icon="🧠">
+                  <span class="wordwall-template-card-icon">🧠</span>
+                  <span class="wordwall-template-card-title">Moslashtirish</span>
+                  <span class="wordwall-template-card-desc">So'z va ta'riflarni bog'lang.</span>
+                </button>
+                <button class="wordwall-template-card" type="button" data-wordwall-template="missing-word" data-wordwall-template-name="Gapni to'ldiring" data-wordwall-template-icon="✍️">
+                  <span class="wordwall-template-card-icon">✍️</span>
+                  <span class="wordwall-template-card-title">Gapni to'ldiring</span>
+                  <span class="wordwall-template-card-desc">Bo'sh joylarni to'g'ri so'z bilan to'ldiring.</span>
+                </button>
+                <button class="wordwall-template-card" type="button" data-wordwall-template="find-match" data-wordwall-template-name="Moslikni toping" data-wordwall-template-icon="🎯">
+                  <span class="wordwall-template-card-icon">🎯</span>
+                  <span class="wordwall-template-card-title">Moslikni toping</span>
+                  <span class="wordwall-template-card-desc">To'g'ri javobni topib moslang.</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="wordwall-editor-box" class="wordwall-editor-box wordwall-hidden">
+              <div class="wordwall-editor-head">
+                <button id="wordwall-back-to-templates-btn" type="button" class="wordwall-back-btn">Oldingi sahifa</button>
+              </div>
+              <label class="wordwall-field">
+                Faoliyat nomi
+                <input id="wordwall-title-input" type="text" value="Untitled1" maxlength="120" />
+              </label>
+
+              <div class="wordwall-clue-toggle" role="radiogroup" aria-label="Clue mode">
+                <label>
+                  <input type="radio" name="wordwall-clue-mode" value="without" checked />
+                  Izohlarsiz
+                </label>
+                <label>
+                  <input type="radio" name="wordwall-clue-mode" value="with" />
+                  Ishoralar bilan
+                </label>
+              </div>
+
+              <div class="wordwall-columns">
+                <span>So'z</span>
+                <span id="wordwall-clue-head" class="wordwall-hidden">Ishora</span>
+              </div>
+
+              <div id="wordwall-word-rows" class="wordwall-word-rows"></div>
+
+              <button id="add-wordwall-item-btn" class="wordwall-add-btn" type="button">+ Yangi so'z qo'shish</button>
+              <p class="wordwall-range-note">min 1 max 100</p>
+
+              <div class="wordwall-footer">
+                <button id="create-wordwall-set-btn" class="wordwall-done-btn" type="button">Bajarildi</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="wordwall-live-controls" class="wordwall-live-controls">
+            <div>
+              <strong id="wordwall-live-current-title">Live sessiya uchun set tanlang</strong>
+              <div class="meta">Kod: <span id="wordwall-live-current-code">-----</span></div>
+              <div class="meta">Holat: <span id="wordwall-live-current-status">waiting</span></div>
+            </div>
+            <div class="entity-actions">
+              <button id="wordwall-live-assign-top-btn" class="table-action-btn" type="button">Assign Link</button>
+              <button id="wordwall-live-start-top-btn" class="table-action-btn" type="button" disabled>Start</button>
+              <button id="wordwall-live-restart-top-btn" class="table-action-btn" type="button" disabled>Restart Code</button>
+              <button id="wordwall-live-finish-top-btn" class="table-action-btn" type="button" disabled>Finish</button>
+            </div>
+          </div>
+
+          <div id="wordwall-set-list" class="entity-list wordwall-set-list"></div>
+          <div id="wordwall-live-monitor" class="entity-list"></div>
+        </section>
+
+        <section id="reports" class="section">
+          <div class="section-header">
+            <h2>Natijalar va tahlil</h2>
+            <button class="btn secondary">Yuklash</button>
+          </div>
+          <div class="dashboard-grid">
+            <div class="report-card">
+              <h3>O'quvchilar korsatkichlari</h3>
+              <p class="metric">O'rta natija: <strong>92%</strong></p>
+              <p>Eng yuqori: 100% | Eng past: 78%</p>
+            </div>
+            <div class="report-card">
+              <h3>Mustaqil ish faoliyati</h3>
+              <p class="metric">Bajarilgan topshiriqlar: <strong>412/450</strong></p>
+              <p>95% bajarildi | 5% bajarilmadi</p>
+            </div>
+            <div class="report-card">
+              <h3>Vaqt analiz</h3>
+              <p class="metric">O'rta vaqt: <strong>4.2 soat</strong></p>
+              <p>Ko'pikdan uzun vaqt harij qilingan</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="settings" class="section">
+          <div class="section-header">
+            <h2>Sozlamalar</h2>
+          </div>
+          <div class="settings-form">
+            <div class="form-group">
+              <label>Profil rasm</label>
+              <input type="file" accept="image/*" />
+            </div>
+            <div class="form-group">
+              <label>To'liq ism</label>
+              <input
+                type="text"
+                placeholder="Shukrullo Goibnazarov"
+                value="Shukrullo Goibnazarov"
+              />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                value="goibnazarovshukrullo@gmail.com"
+                disabled
+              />
+            </div>
+            <div class="form-group">
+              <label>Telefon</label>
+              <input type="tel" placeholder="+998 (90) 123-45-67" />
+            </div>
+            <div class="form-group">
+              <label>Yangi parol</label>
+              <input type="password" placeholder="Yangi parol kiriting" />
+            </div>
+            <button class="btn primary">Saqlash</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

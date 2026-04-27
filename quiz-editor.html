@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Savollar Editor | EduSkill Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="quiz-editor.css" />
+  </head>
+  <body class="quiz-editor-body">
+    <main class="qe-app">
+      <aside class="qe-sidebar">
+        <a class="qe-back" href="dashboard.html">Dashboardga qaytish</a>
+
+        <section class="qe-set-card">
+          <div class="qe-cover"></div>
+          <div class="qe-set-content">
+            <h2 id="qe-quiz-title">Quiz papka</h2>
+            <p id="qe-quiz-description" class="qe-muted">Savollar to'plami</p>
+
+            <div class="qe-stats-row">
+              <span id="qe-question-count" class="qe-stat-pill">0 savol</span>
+              <span id="qe-play-count" class="qe-stat-pill">0 play</span>
+            </div>
+
+            <button id="qe-add-question-btn" class="btn primary" type="button">+ Add Question</button>
+            <button id="qe-publish-btn" class="btn secondary" type="button">Save Set</button>
+
+            <div class="qe-tool-actions">
+              <button id="qe-copy-link-btn" class="qe-tool-btn" type="button">Assign Link</button>
+              <button id="qe-open-play-btn" class="qe-tool-btn host" type="button">Host Live</button>
+            </div>
+
+            <section id="qe-live-panel" class="qe-live-panel qe-hidden">
+              <div class="qe-live-code-row">
+                <span class="qe-live-code-label">Live kod</span>
+                <strong id="qe-live-code">-----</strong>
+                <button id="qe-copy-code-btn" class="qe-mini-btn" type="button">Copy</button>
+              </div>
+
+              <div class="qe-live-stats">
+                <span id="qe-live-status" class="qe-live-pill">waiting</span>
+                <span id="qe-live-players" class="qe-live-pill">0 o'quvchi</span>
+                <span id="qe-live-progress" class="qe-live-pill">0 / 0</span>
+                <span id="qe-live-remaining" class="qe-live-pill">0s</span>
+              </div>
+
+              <div class="qe-live-actions">
+                <button id="qe-live-create" class="btn secondary" type="button">Create</button>
+                <button id="qe-live-restart" class="btn secondary" type="button">Restart Code</button>
+                <button id="qe-live-start" class="btn primary" type="button">Start</button>
+                <button id="qe-live-next" class="btn secondary" type="button">Next</button>
+                <button id="qe-live-finish" class="btn secondary" type="button">Finish</button>
+              </div>
+
+              <div class="qe-live-players-wrap">
+                <h4>Live ishtirokchilar</h4>
+                <ul id="qe-live-players-list" class="qe-live-players-list"></ul>
+              </div>
+            </section>
+          </div>
+        </section>
+      </aside>
+
+      <section class="qe-main">
+        <header class="qe-main-header">
+          <div class="qe-user-meta">
+            <span id="qe-status" class="qe-status">Draft</span>
+            <span id="qe-user-role" class="qe-role">admin</span>
+            <span id="qe-user-email"></span>
+          </div>
+          <button id="qe-logout" class="btn secondary" type="button">Chiqish</button>
+        </header>
+
+        <div id="qe-question-list" class="qe-question-list"></div>
+      </section>
+    </main>
+
+    <div id="qe-modal" class="qe-modal qe-hidden" role="dialog" aria-modal="true">
+      <div class="qe-modal-dialog">
+        <div class="qe-modal-top">
+          <div class="qe-modal-controls">
+            <label>
+              Vaqt (sek)
+              <input id="qe-time-limit" type="number" min="5" value="30" />
+            </label>
+            <label>
+              Turi
+              <select id="qe-question-type">
+                <option value="multiple-choice">Multiple Choice</option>
+              </select>
+            </label>
+          </div>
+          <div class="qe-modal-actions">
+            <button id="qe-modal-cancel" class="btn secondary" type="button">Cancel</button>
+            <button id="qe-modal-save" class="btn primary" type="button">Save</button>
+          </div>
+        </div>
+
+        <div class="qe-modal-body">
+          <label class="qe-label">
+            Savol matni
+            <textarea id="qe-question-text" rows="3" placeholder="Savol matnini kiriting"></textarea>
+          </label>
+
+          <div class="qe-answer-grid">
+            <label class="qe-answer-card orange">
+              <span class="qe-answer-prefix">A</span>
+              <input id="qe-option-A" type="text" placeholder="Variant A" />
+            </label>
+            <label class="qe-answer-card blue">
+              <span class="qe-answer-prefix">B</span>
+              <input id="qe-option-B" type="text" placeholder="Variant B" />
+            </label>
+            <label class="qe-answer-card green">
+              <span class="qe-answer-prefix">C</span>
+              <input id="qe-option-C" type="text" placeholder="Variant C" />
+            </label>
+            <label class="qe-answer-card red">
+              <span class="qe-answer-prefix">D</span>
+              <input id="qe-option-D" type="text" placeholder="Variant D" />
+            </label>
+          </div>
+
+          <div class="qe-modal-bottom">
+            <label class="qe-label">
+              To'g'ri javob
+              <select id="qe-correct-option">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </label>
+            <label class="qe-label">
+              Ball
+              <input id="qe-points" type="number" min="1" value="10" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="quiz-editor.js"></script>
+  </body>
+</html>

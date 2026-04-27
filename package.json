@@ -1,0 +1,17 @@
+{
+  "name": "eduskill-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EduSkill Lab full-stack project",
+  "scripts": {
+    "install:backend": "npm --prefix backend install",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:migrate": "npm --prefix backend run migrate",
+    "db:seed": "npm --prefix backend run seed",
+    "api:dev": "npm --prefix backend run dev",
+    "api:start": "npm --prefix backend run start",
+    "setup": "npm run install:backend && npm run db:up && npm run db:migrate && npm run db:seed",
+    "check": "npm --prefix backend run check"
+  }
+}

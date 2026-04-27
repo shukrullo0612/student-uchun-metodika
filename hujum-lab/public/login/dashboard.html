@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LMS Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./dashboard.css?v=20260421-1" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="top-left">
+        <img
+          class="logo"
+          src="https://lms.tuit.uz/assets/images/logo-md.png"
+          alt="TATU logosi"
+        />
+        <div class="uni-title">
+          <p>MUHAMMAD AL-XORAZMIY</p>
+          <p>NOMIDAGI TOSHKENT AXBOROT TEXNOLOGIYALARI UNIVERSITETI</p>
+        </div>
+      </div>
+
+      <div class="top-right">
+        <div class="time-box">
+          <span>Server vaqti</span>
+          <strong id="server-time">--:--</strong>
+        </div>
+        <div class="avatar" id="user-initial">U</div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <nav>
+          <a href="#" class="active">Dashboard</a>
+          <a href="#">Fan tanlov</a>
+          <a href="#">Mening fanlarim</a>
+          <a href="#">Dars jadvali</a>
+          <a href="#">Vazifalar</a>
+          <a href="#">Qayta o'qish</a>
+          <a href="#">Yakuniy</a>
+          <a href="#">Individual shaxsiy reja</a>
+          <a href="#">Ma'lumot</a>
+          <a href="#">So'rovnoma</a>
+          <a href="#">Talaba xizmatlari</a>
+          <a href="#">Diplom ishi</a>
+        </nav>
+
+        <button id="logout-btn" class="logout-btn" type="button">Chiqish</button>
+      </aside>
+
+      <section class="content">
+        <div class="welcome">
+          <h1 id="welcome-title">Assalomu alaykum</h1>
+          <p>Bugungi e'lonlar va yangiliklar</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Grant taqsimoti</h3>
+            <p>Grant taqsimoti</p>
+            <time>08:08:2025</time>
+            <button>Batafsil</button>
+          </article>
+          <article class="card">
+            <h3>Hurmatli 4-bosqich talabalari!</h3>
+            <p>Hurmatli 4-bosqich talabalari!</p>
+            <time>26:04:2025</time>
+            <button>Batafsil</button>
+          </article>
+          <article class="card">
+            <h3>Hurmatli 1-bosqich talabalari!</h3>
+            <p>Hurmatli 1-bosqich talabalari!</p>
+            <time>03:01:2025</time>
+            <button>Batafsil</button>
+          </article>
+          <article class="card">
+            <h3>Qayta o'qishda qatnashish shart!</h3>
+            <p>Qayta o'qishda qatnashish shart!</p>
+            <time>01:07:2024</time>
+            <button>Batafsil</button>
+          </article>
+          <article class="card">
+            <h3>"Qayta o'qish"</h3>
+            <p>"Qayta o'qish"</p>
+            <time>11:07:2024</time>
+            <button>Batafsil</button>
+          </article>
+          <article class="card">
+            <h3>Yakuniy nazorat</h3>
+            <p>Yakuniy nazorat</p>
+            <time>31:05:2024</time>
+            <button>Batafsil</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const API_BASE = '/hujum/api';
+      const token = sessionStorage.getItem('hujumSessionToken');
+      const userRaw = sessionStorage.getItem('hujumUser');
+      const serverTimeEl = document.getElementById('server-time');
+      const welcomeTitle = document.getElementById('welcome-title');
+      const userInitial = document.getElementById('user-initial');
+
+      if (!token) {
+        window.location.href = './index.html';
+      }
+
+      function formatNow() {
+        const d = new Date();
+        const date = d.toLocaleDateString('uz-UZ');
+        const time = d.toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit' });
+        serverTimeEl.textContent = date + ' | ' + time;
+      }
+
+      formatNow();
+      setInterval(formatNow, 1000);
+
+      try {
+        const localUser = JSON.parse(userRaw || '{}');
+        if (localUser && localUser.fullName) {
+          welcomeTitle.textContent = 'Xush kelibsiz, ' + localUser.fullName;
+          userInitial.textContent = localUser.fullName.charAt(0).toUpperCase();
+        }
+      } catch (error) {
+        // ignore invalid local user cache
+      }
+
+      async function validateSession() {
+        try {
+          const response = await fetch(API_BASE + '/lms-session', {
+            headers: {
+              Authorization: 'Bearer ' + token,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error('Session invalid');
+          }
+
+          const payload = await response.json();
+          if (!payload.ok || !payload.user) {
+            throw new Error('Session invalid');
+          }
+
+          if (payload.user.fullName) {
+            welcomeTitle.textContent = 'Xush kelibsiz, ' + payload.user.fullName;
+            userInitial.textContent = payload.user.fullName.charAt(0).toUpperCase();
+          }
+        } catch (error) {
+          sessionStorage.removeItem('hujumSessionToken');
+          sessionStorage.removeItem('hujumUser');
+          window.location.href = './index.html';
+        }
+      }
+
+      validateSession();
+
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+          await fetch(API_BASE + '/lms-logout', {
+            method: 'POST',
+            headers: {
+              Authorization: 'Bearer ' + token,
+            },
+          });
+        } catch (error) {
+          // ignore network issues on logout
+        }
+
+        sessionStorage.removeItem('hujumSessionToken');
+        sessionStorage.removeItem('hujumUser');
+        window.location.href = './index.html';
+      });
+    </script>
+  </body>
+</html>

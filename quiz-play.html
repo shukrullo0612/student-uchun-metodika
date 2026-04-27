@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz topshirish</title>
+    <link rel="stylesheet" href="play.css" />
+  </head>
+  <body>
+    <main class="play-shell">
+      <header class="play-header">
+        <div>
+          <h1 class="play-title">Quiz topshirish</h1>
+          <p class="play-subtitle">Quiz ID bo'yicha testni ochib javob yuboring.</p>
+        </div>
+        <a class="link-btn" href="index.html">Bosh sahifaga qaytish</a>
+      </header>
+
+      <section class="panel">
+        <div class="form-grid">
+          <label>
+            Quiz ID
+            <input id="quiz-id-input" type="text" placeholder="Quiz ID kiriting" />
+          </label>
+          <label>
+            Ismingiz
+            <input id="player-name-input" type="text" placeholder="Ism Familiya" />
+          </label>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button id="load-quiz-btn" class="btn secondary">Quizni yuklash</button>
+          <button id="submit-quiz-btn" class="btn primary">Javoblarni yuborish</button>
+        </div>
+      </section>
+
+      <section id="quiz-status" class="status-box status-info">Quizni yuklash uchun ID kiriting.</section>
+
+      <section id="quiz-container" class="panel" style="display: none;">
+        <h2 id="quiz-title" style="margin-top: 0;"></h2>
+        <div id="quiz-meta" class="play-subtitle"></div>
+        <div id="quiz-questions" class="question-list"></div>
+      </section>
+    </main>
+
+    <script src="quiz-play.js"></script>
+  </body>
+</html>

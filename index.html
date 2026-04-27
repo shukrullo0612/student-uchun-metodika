@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elektron ta'lim resurslari | Landing</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-mark">◎</span>
+        <span class="logo-text">EduSkill Lab</span>
+      </div>
+      <nav class="site-nav">
+        <a href="#metodika">Metodika</a>
+        <a href="#afzalliklar">Afzalliklar</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn secondary auth-nav-btn" href="#login" data-auth-target="signin">SIGN IN</a>
+        <a class="btn primary auth-nav-btn" href="#login" data-auth-target="register">REGISTER</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Elektron ta'lim resurslari asosida</p>
+          <h1>
+            O'quvchilarda mustaqil ishlash ko'nikmalarini shakllantirish
+            metodikasi.
+          </h1>
+          <p class="lead">
+            Metodika, bosqichlar va amaliy topshiriqlar bilan bir necha
+            daqiqada tayyor o'quv rejasi. Hammasi bir platformada.
+          </p>
+          <div class="cta-row">
+            <input
+              class="input"
+              type="email"
+              placeholder="Elektron pochtani kiriting"
+            />
+          </div>
+          <p class="subnote">Kredit karta kerak emas. Abadiy demo rejim.</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="card-top">
+            <div class="chip"></div>
+            <div class="badge">AI yadro</div>
+          </div>
+          <div class="card-body">
+            <h3>O'quv jarayoni paneli</h3>
+            <p>Natijalar, mustaqil ish va feedback bir joyda.</p>
+            <div class="mini-chart">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="login" class="login">
+        <div class="login-box">
+          <div class="auth-switch">
+            <button
+              type="button"
+              class="auth-switch-btn"
+              data-auth-mode="register"
+            >
+              REGISTER
+            </button>
+            <button
+              type="button"
+              class="auth-switch-btn active"
+              data-auth-mode="signin"
+            >
+              SIGN IN
+            </button>
+          </div>
+          <h2 id="auth-title">SIGN IN</h2>
+          <p id="auth-subtitle">Mavjud akkaunt bilan tizimga kiring.</p>
+          <form id="auth-form" data-auth-mode="signin">
+            <label id="signup-name-wrap" class="is-hidden">
+              F.I.Sh
+              <input
+                id="signupFullName"
+                name="fullName"
+                type="text"
+                placeholder="Ism familiya"
+              />
+            </label>
+            <label>
+              Email
+              <input
+                id="loginEmail"
+                name="email"
+                type="email"
+                placeholder="example@gmail.com"
+                required
+              />
+            </label>
+            <label>
+              Parol
+              <div class="password-input-wrap">
+                <input
+                  id="loginPassword"
+                  name="password"
+                  type="password"
+                  placeholder="Parolingiz"
+                  required
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  aria-label="Parolni korsatish"
+                  title="Parolni korsatish"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 5C7 5 3 8 1.5 12C3 16 7 19 12 19C17 19 21 16 22.5 12C21 8 17 5 12 5ZM12 17C8.6 17 5.7 14.9 4.3 12C5.7 9.1 8.6 7 12 7C15.4 7 18.3 9.1 19.7 12C18.3 14.9 15.4 17 12 17Z"></path>
+                    <circle cx="12" cy="12" r="3.2"></circle>
+                  </svg>
+                </button>
+              </div>
+            </label>
+            <button type="submit" class="btn primary" id="loginBtn">SIGN IN</button>
+            <a id="auth-helper-link" class="link" href="#">Akkauntingiz yoqmi? REGISTER</a>
+          </form>
+        </div>
+      </section>
+
+      <section id="metodika" class="grid">
+        <div>
+          <h2>Metodika bosqichlari</h2>
+          <p>
+            Elektron resurslar asosida mustaqil ishlashni rivojlantirish uchun
+            diagnostika, mashg'ulot va monitoring bloklari.
+          </p>
+        </div>
+        <div class="grid-cards">
+          <div class="info-card">
+            <h3>1. Diagnostika</h3>
+            <p>O'quvchining start ko'rsatkichlarini aniqlash.</p>
+          </div>
+          <div class="info-card">
+            <h3>2. Amaliyot</h3>
+            <p>Mustaqil vazifalar va loyiha asosidagi ta'lim.</p>
+          </div>
+          <div class="info-card">
+            <h3>3. Monitoring</h3>
+            <p>Natijalarni tahlil qilish va keyingi tavsiyalar.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="afzalliklar" class="strip">
+        <div>
+          <h2>Afzalliklar</h2>
+          <ul>
+            <li>Shaxsiylashtirilgan topshiriqlar generatori</li>
+            <li>O'qituvchi va o'quvchi uchun yagona panel</li>
+            <li>Natijalarni vizual tahlil qilish</li>
+          </ul>
+        </div>
+        <div class="strip-cta">
+          <h3>Metodikani hoziroq sinab ko'ring</h3>
+          <button class="btn secondary">Demo so'rash</button>
+        </div>
+      </section>
+
+      <section id="kontakt" class="contact">
+        <h2>Bog'lanish</h2>
+        <p>Taklif va savollar uchun: metodika@eduskill.uz</p>
+      </section>
+    </main>
+    <script src="script.js?v=20260421-authfix2"></script>
+  </body>
+</html>

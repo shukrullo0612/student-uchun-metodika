@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'quvchi paneli | EduSkill Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body class="student-body">
+    <main class="student-shell">
+      <header class="student-header">
+        <div>
+          <p id="student-role" class="student-kicker">O'quvchi rejimi</p>
+          <h1>Xush kelibsiz, o'quvchi</h1>
+          <p id="student-email" class="student-email"></p>
+        </div>
+        <button id="student-logout" class="btn secondary">Chiqish</button>
+      </header>
+
+      <section id="student-join-grid" class="student-grid">
+        <article id="student-quiz-join-card" class="student-card">
+          <h2>Jonli Quizga qo'shilish</h2>
+          <p>Admin bergan 5 xonali kodni kiriting.</p>
+          <input id="student-quiz-code" type="text" maxlength="5" placeholder="12345" />
+          <button id="join-live-quiz" class="btn primary">So'rov yuborish</button>
+        </article>
+
+        <article class="student-card student-nonquiz-card">
+          <h2>Wordwall mashq</h2>
+          <p>Admin bergan 5 xonali kodni kiriting va Start berilishini kuting.</p>
+          <input id="student-wordwall-name" type="text" placeholder="Ismingiz" />
+          <input id="student-wordwall-code" type="text" maxlength="5" placeholder="12345" />
+          <button id="join-wordwall-live" class="btn primary">So'rov yuborish</button>
+        </article>
+
+        <article class="student-card student-nonquiz-card">
+          <h2>Kahootga qo'shilish</h2>
+          <p>O'qituvchi bergan PIN bilan live sessiyaga kiring.</p>
+          <input id="student-kahoot-pin" type="text" placeholder="PIN" />
+          <button id="open-kahoot" class="btn primary">Kahootga o'tish</button>
+        </article>
+      </section>
+
+      <section id="live-quiz-panel" class="student-live-panel student-hidden">
+        <div class="student-live-header">
+          <div>
+            <h2 id="live-quiz-title">Jonli Quiz</h2>
+            <p id="live-quiz-code-label" class="student-live-code">Kod: -----</p>
+          </div>
+          <button id="clear-student-result-btn" class="btn secondary student-clear-result-btn" type="button">
+            Natijani o'chirish
+          </button>
+          <div class="student-live-meta">
+            <span id="live-progress-label" class="student-live-pill">0 / 0</span>
+            <span id="live-score-label" class="student-live-pill">0 ball</span>
+          </div>
+        </div>
+
+        <div id="live-waiting-box" class="student-live-waiting">
+          <h3>Kutilmoqda...</h3>
+          <p id="live-waiting-message">
+            Hotirjam bo'ling, sizning so'rovingiz qabul qilindi. Tez orada quiz testlar boshlanadi.
+          </p>
+        </div>
+
+        <div id="live-question-box" class="student-live-question student-hidden">
+          <div class="student-live-timer-wrap">
+            <span id="live-timer-value">0s</span>
+            <div class="student-live-timer-bar">
+              <span id="live-timer-fill"></span>
+            </div>
+          </div>
+
+          <h3 id="live-question-text">Savol</h3>
+          <div id="live-options" class="student-live-options"></div>
+          <p id="live-answer-feedback" class="student-live-feedback"></p>
+        </div>
+
+        <div id="live-next-actions" class="student-live-actions-row student-hidden">
+          <button id="live-next-btn" class="btn secondary student-hidden" type="button">Keyingi savolga o'tish</button>
+        </div>
+
+        <div id="live-finished-box" class="student-live-finished student-hidden">
+          <h3>Quiz yakunlandi</h3>
+          <p id="live-final-score">Sizning natijangiz: 0 ball</p>
+          <p id="live-final-stats">To'g'ri: 0 | Noto'g'ri: 0</p>
+          <h4>Top ishtirokchilar</h4>
+          <ul id="live-leaderboard" class="student-live-leaderboard"></ul>
+        </div>
+      </section>
+
+      <p id="student-status" class="student-status">Kerakli ID yoki PIN ni kiriting.</p>
+
+      <section id="quiz-completion-modal" class="student-quiz-modal student-hidden" aria-hidden="true">
+        <div class="student-quiz-modal-card" role="dialog" aria-modal="true" aria-labelledby="quiz-completion-title">
+          <button
+            id="quiz-completion-close-btn"
+            class="student-quiz-modal-close-btn"
+            type="button"
+            aria-label="Yopish"
+          >
+            x
+          </button>
+          <div class="student-quiz-modal-hero" aria-hidden="true">
+            <span class="student-quiz-modal-icon">Q</span>
+          </div>
+          <h3 id="quiz-completion-title">Ajoyib!</h3>
+          <p id="quiz-completion-subtitle" class="student-quiz-modal-subtitle">
+            Quiz yakunlandi. Natijangiz tayyor.
+          </p>
+          <div class="student-quiz-modal-metrics">
+            <span id="quiz-completion-score">Natija: 0 ball</span>
+            <span id="quiz-completion-correct">To'g'ri: 0</span>
+            <span id="quiz-completion-wrong">Noto'g'ri: 0</span>
+          </div>
+          <p id="quiz-completion-note" class="student-quiz-modal-note">
+            Tabriklaymiz, quizni muvaffaqiyatli yakunladingiz.
+          </p>
+          <button id="quiz-completion-ok-btn" class="student-quiz-modal-ok-btn" type="button">Yopish</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="student.js"></script>
+  </body>
+</html>

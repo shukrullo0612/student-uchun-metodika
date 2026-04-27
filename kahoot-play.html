@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kahoot live o'yin</title>
+    <link rel="stylesheet" href="play.css" />
+  </head>
+  <body>
+    <main class="play-shell">
+      <header class="play-header">
+        <div>
+          <h1 class="play-title">Kahoot live o'yin</h1>
+          <p class="play-subtitle">PIN orqali sessionga kirib, savollarga javob bering.</p>
+        </div>
+        <a class="link-btn" href="index.html">Bosh sahifaga qaytish</a>
+      </header>
+
+      <section class="panel">
+        <div class="form-grid">
+          <label>
+            PIN
+            <input id="pin-input" type="text" placeholder="6 xonali PIN" />
+          </label>
+          <label>
+            Ismingiz
+            <input id="player-input" type="text" placeholder="Ism Familiya" />
+          </label>
+        </div>
+        <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button id="join-btn" class="btn primary">Sessionga kirish</button>
+          <button id="refresh-btn" class="btn secondary">Yangilash</button>
+        </div>
+      </section>
+
+      <section id="kahoot-status" class="status-box status-info">Sessionga kirish uchun PIN va ism kiriting.</section>
+
+      <section class="panel">
+        <div class="live-metrics">
+          <div class="metric-pill">Holat: <strong id="session-status">kutilmoqda</strong></div>
+          <div class="metric-pill">Savol: <strong id="question-progress">0 / 0</strong></div>
+          <div class="metric-pill">Qolgan vaqt: <strong id="timer-value">0s</strong></div>
+          <div class="metric-pill">Mening ballim: <strong id="my-score">0</strong></div>
+        </div>
+        <div class="timer-track" aria-hidden="true">
+          <div id="timer-fill" class="timer-fill"></div>
+        </div>
+
+        <h2 style="margin-top: 0;">Joriy savol</h2>
+        <div id="question-box" class="play-subtitle">Savol kutilmoqda...</div>
+        <div id="answer-feedback" class="play-subtitle answer-feedback"></div>
+        <div id="answer-tiles" class="answer-tiles" style="display: none;">
+          <button class="answer-tile" data-option="A">A</button>
+          <button class="answer-tile" data-option="B">B</button>
+          <button class="answer-tile" data-option="C">C</button>
+          <button class="answer-tile" data-option="D">D</button>
+        </div>
+      </section>
+
+      <section id="summary-panel" class="panel hidden">
+        <h2 style="margin-top: 0;">Yakuniy natija</h2>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span>Ball</span>
+            <strong id="summary-score">0</strong>
+          </div>
+          <div class="summary-item">
+            <span>To'g'ri</span>
+            <strong id="summary-correct">0</strong>
+          </div>
+          <div class="summary-item">
+            <span>Noto'g'ri</span>
+            <strong id="summary-incorrect">0</strong>
+          </div>
+          <div class="summary-item">
+            <span>Rank</span>
+            <strong id="summary-rank">-</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 style="margin-top: 0;">Live reyting</h2>
+        <div id="leaderboard" class="leaderboard"></div>
+      </section>
+    </main>
+
+    <script src="kahoot-play.js"></script>
+  </body>
+</html>

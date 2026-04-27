@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talaba Paneli | LMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #dfe4ed;
+      --sidebar: #20356e;
+      --sidebar-dark: #1b2f62;
+      --text: #1f2f4d;
+      --muted: #76839b;
+      --card: #f5f7fb;
+      --line: #cfd6e3;
+      --accent: #253f7d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 255px 1fr;
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, var(--sidebar), var(--sidebar-dark));
+      color: #e8eefc;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-head {
+      min-height: 69px;
+      background: #f2f4f9;
+      color: #1b2f62;
+      border-bottom: 1px solid #d8deea;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+    }
+
+    .sidebar-head img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .sidebar-head p {
+      margin: 0;
+      font-size: 10px;
+      line-height: 1.3;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .menu {
+      padding: 10px 12px 20px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .menu-title {
+      margin: 14px 8px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #c7d4f6;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .menu-item {
+      border: 0;
+      width: 100%;
+      background: transparent;
+      color: #eef3ff;
+      font: inherit;
+      font-size: 16px;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-item::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      flex-shrink: 0;
+    }
+
+    .menu-item.active {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      min-height: 69px;
+      background: #f2f4f9;
+      border-bottom: 1px solid #d8deea;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 22px;
+    }
+
+    .menu-indicator {
+      width: 20px;
+      height: 14px;
+      border-top: 3px solid #27407e;
+      border-bottom: 3px solid #27407e;
+      position: relative;
+      opacity: 0.9;
+    }
+
+    .menu-indicator::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 4px;
+      border-top: 3px solid #27407e;
+    }
+
+    .top-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #203566;
+    }
+
+    .server-time {
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .server-time strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+
+    .logout-btn {
+      border: 1px solid #c5cedf;
+      background: #ffffff;
+      color: #24396f;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .notice {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      min-height: 132px;
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .notice h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #223866;
+      line-height: 1.2;
+    }
+
+    .notice p {
+      margin: 0;
+      font-size: 16px;
+      color: #293955;
+      line-height: 1.25;
+    }
+
+    .notice-foot {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .detail-btn {
+      border: 0;
+      background: #263a73;
+      color: #fff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1200px) {
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+
+      .main {
+        order: 1;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-item,
+      .notice h3,
+      .notice p,
+      .notice-foot,
+      .detail-btn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <img src="https://lms.tuit.uz/assets/images/logo-md.png" alt="TUIT logo" />
+        <p>MUHAMMAD AL-XORAZMIY NOMIDAGI TOSHKENT AXBOROT TEXNOLOGIYALARI UNIVERSITETI</p>
+      </div>
+
+      <nav class="menu" aria-label="Talaba menyusi">
+        <button type="button" class="menu-item active">Dashboard</button>
+        <p class="menu-title">Talaba</p>
+        <button type="button" class="menu-item">Fan tanlov</button>
+        <button type="button" class="menu-item">Mening fanlarim</button>
+        <button type="button" class="menu-item">Dars jadvali</button>
+        <button type="button" class="menu-item">Vazifalar</button>
+        <button type="button" class="menu-item">Qayta o'qish</button>
+        <button type="button" class="menu-item">Yakuniy</button>
+        <button type="button" class="menu-item">Individual shaxsiy reja</button>
+        <button type="button" class="menu-item">Ma'lumot</button>
+        <button type="button" class="menu-item">So'rovnoma</button>
+        <button type="button" class="menu-item">Talaba xizmatlari</button>
+        <button type="button" class="menu-item">Diplom ishi</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <span class="menu-indicator" aria-hidden="true"></span>
+        <div class="top-meta">
+          <div class="server-time">
+            <span>Server vaqti</span>
+            <strong id="server-time">--.--.---- | --:--</strong>
+          </div>
+          <button type="button" class="logout-btn" onclick="logout()">Chiqish</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="cards">
+          <article class="notice">
+            <div>
+              <h3>Grant taqsimoti</h3>
+              <p>Grant taqsimoti bo'yicha yangilangan ma'lumotlar joylandi.</p>
+            </div>
+            <div class="notice-foot"><span>08:08:2025</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+
+          <article class="notice">
+            <div>
+              <h3 id="welcome-title">Hurmatli talabalar!</h3>
+              <p id="welcome-text">Yangi semestrga oid e'lonlar bilan tanishing.</p>
+            </div>
+            <div class="notice-foot"><span>26:04:2025</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+
+          <article class="notice">
+            <div>
+              <h3>Hurmatli 1-bosqich talabalar!</h3>
+              <p>Dars jarayonlari bo'yicha yangi yo'riqnoma e'lon qilindi.</p>
+            </div>
+            <div class="notice-foot"><span>03:01:2025</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+
+          <article class="notice">
+            <div>
+              <h3>Qayta o'qishda qatnashish shart!</h3>
+              <p>Qayta o'qish topshiriqlari bo'yicha muddatlar e'lon qilindi.</p>
+            </div>
+            <div class="notice-foot"><span>19:07:2024</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+
+          <article class="notice">
+            <div>
+              <h3>"Qayta o'qish"</h3>
+              <p>Qayta o'qish bo'yicha yangi guruhlar tasdiqlandi.</p>
+            </div>
+            <div class="notice-foot"><span>11:07:2024</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+
+          <article class="notice">
+            <div>
+              <h3>Yakuniy nazorat</h3>
+              <p>Yakuniy nazorat imtihon jadvali joylandi.</p>
+            </div>
+            <div class="notice-foot"><span>31:05:2024</span><button class="detail-btn" type="button">Batafsil</button></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const userJson = sessionStorage.getItem('hujumUser');
+    if (!userJson) {
+      window.location.href = '/hujum/login/';
+    }
+
+    let userName = 'Talaba';
+    try {
+      const parsed = JSON.parse(userJson || '{}');
+      userName = parsed.fullName || parsed.email || 'Talaba';
+    } catch (error) {
+      userName = 'Talaba';
+    }
+
+    document.getElementById('welcome-title').textContent = 'Hurmatli ' + userName + '!';
+    document.getElementById('welcome-text').textContent = 'Siz tizimga muvaffaqiyatli kirdingiz. Bugungi e\'lonlar bilan tanishing.';
+
+    function formatNow() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      return day + '.' + month + '.' + year + ' | ' + hours + ':' + minutes;
+    }
+
+    function refreshClock() {
+      const el = document.getElementById('server-time');
+      el.textContent = formatNow();
+    }
+
+    refreshClock();
+    setInterval(refreshClock, 1000 * 20);
+
+    function logout() {
+      sessionStorage.removeItem('hujumUser');
+      sessionStorage.removeItem('hujumSessionToken');
+      window.location.href = '/hujum/login/';
+    }
+  </script>
+</body>
+</html>

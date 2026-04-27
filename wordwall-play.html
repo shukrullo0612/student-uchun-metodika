@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordwall mashq</title>
+    <link rel="stylesheet" href="play.css" />
+  </head>
+  <body class="wordwall-play-page">
+    <main class="play-shell wordwall-play-shell">
+      <header class="play-header" id="wordwall-page-header">
+        <div>
+          <h1 class="play-title">Wordwall mashq</h1>
+          <p class="play-subtitle">Set ID orqali mashqni oching va o'yinni boshlang.</p>
+        </div>
+        <a class="link-btn" href="index.html">Bosh sahifaga qaytish</a>
+      </header>
+
+      <section class="panel" id="wordwall-entry-panel">
+        <div class="form-grid">
+          <label>
+            O'yin kodi
+            <input id="wordwall-pin-input" type="text" placeholder="12345" maxlength="5" inputmode="numeric" />
+          </label>
+          <label>
+            Ismingiz
+            <input id="player-name-input" type="text" placeholder="Ism Familiya" />
+          </label>
+        </div>
+        <div class="wordwall-actions-row">
+          <button id="load-set-btn" class="btn secondary">O'yinni boshlash</button>
+          <button id="submit-set-btn" class="btn primary">Javoblarni yuborish</button>
+        </div>
+      </section>
+
+      <section id="wordwall-status" class="status-box status-info">5 xonali kod kiriting va o'yinni boshlang.</section>
+
+      <section id="wordwall-container" class="panel wordwall-game-panel wordwall-container-hidden">
+        <h2 id="set-title" class="wordwall-set-title"></h2>
+        <div id="set-meta" class="play-subtitle"></div>
+        <div id="anagram-game" class="anagram-game wordwall-anagram-game hidden">
+          <div class="anagram-top">
+            <div id="anagram-progress" class="metric-pill"></div>
+            <div id="anagram-score" class="metric-pill"></div>
+          </div>
+          <div class="anagram-timer" id="anagram-timer">00:00</div>
+          <div id="anagram-letters" class="anagram-letters"></div>
+          <div id="anagram-answer" class="anagram-answer"></div>
+          <div id="anagram-hint" class="play-subtitle"></div>
+          <div id="anagram-validation" class="anagram-validation" aria-live="polite"></div>
+          <aside class="wordwall-live-panel" id="wordwall-live-panel">
+            <div class="wordwall-live-top">
+              <button id="live-assign-link-btn" class="wordwall-live-top-btn" type="button">Assign Link</button>
+              <button id="live-host-btn" class="wordwall-live-top-btn host" type="button">Host Live</button>
+            </div>
+
+            <div class="wordwall-live-card">
+              <div class="wordwall-live-code-row">
+                <span class="label">Live kod</span>
+                <strong id="live-pin-display">-----</strong>
+                <button id="copy-live-pin-btn" class="wordwall-live-copy-btn" type="button">Copy</button>
+              </div>
+              <div class="wordwall-live-chip-grid">
+                <span id="live-status-chip" class="wordwall-live-chip">waiting</span>
+                <span id="live-players-chip" class="wordwall-live-chip">0 o'quvchi</span>
+                <span id="live-progress-chip" class="wordwall-live-chip">0 / 0</span>
+                <span id="live-time-chip" class="wordwall-live-chip">00:00</span>
+              </div>
+            </div>
+
+            <div class="anagram-actions">
+              <button id="anagram-start-btn" class="btn live-start" type="button">Start</button>
+              <button id="anagram-clear-btn" class="btn secondary" type="button">Tozalash</button>
+              <button id="anagram-shuffle-btn" class="btn secondary" type="button">Qayta aralashtirish</button>
+              <button id="anagram-next-btn" class="btn primary" type="button">Keyingi</button>
+              <button id="anagram-finish-btn" class="btn primary" type="button">Yakunlash</button>
+            </div>
+
+            <section class="wordwall-live-participants" aria-live="polite">
+              <h3>Live ishtirokchilar</h3>
+              <div id="live-participants-list" class="wordwall-live-participants-list">
+                <div class="wordwall-live-empty">Hali ishtirokchi yo'q</div>
+              </div>
+            </section>
+          </aside>
+        </div>
+        <div id="set-items" class="question-list"></div>
+      </section>
+    </main>
+
+    <section id="anagram-completion-modal" class="anagram-completion-modal hidden" aria-hidden="true">
+      <div class="anagram-completion-card" role="dialog" aria-modal="true" aria-labelledby="anagram-completion-title">
+        <button id="anagram-completion-close-btn" class="anagram-completion-close-btn" type="button" aria-label="Yopish">x</button>
+        <div class="anagram-completion-hero" aria-hidden="true">
+          <div class="anagram-completion-brain"></div>
+          <div class="anagram-completion-chip"></div>
+        </div>
+        <h3 id="anagram-completion-title">Tabriklaymiz!</h3>
+        <p id="anagram-completion-subtitle" class="anagram-completion-subtitle">Anagramma mashqi yakunlandi.</p>
+        <div class="anagram-completion-metrics">
+          <span id="anagram-completion-score">Natija: 0%</span>
+          <span id="anagram-completion-accuracy">To'g'ri javob: 0/0</span>
+          <span id="anagram-completion-time">Sarflangan vaqt: 00:00</span>
+        </div>
+        <p id="anagram-completion-note" class="anagram-completion-note"></p>
+        <button id="anagram-completion-ok-btn" class="btn primary anagram-completion-ok-btn" type="button">Davom etish</button>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="wordwall-play.js"></script>
+  </body>
+</html>

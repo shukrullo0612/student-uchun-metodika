@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: eduskill-postgres
+    environment:
+      POSTGRES_DB: eduskill
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - eduskill_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d eduskill']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  eduskill_pg_data:
