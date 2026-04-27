@@ -53,7 +53,7 @@ Bu sahifalar orqali oquvchi test/mashqni mustaqil bajaradi.
 ## Login
 
 - `goibnazarovshukrullo@gmail.com` / `admin123`
-- `dilraborustamova048@gmail.com` / `dilrabo6880`
+
 
 ## Oquvchi uchun public sahifalar
 
