@@ -73,3 +73,51 @@ Bu havolalarni dashboard ichida `Nusxa` yoki `Oquvchi havolasi` tugmalari orqali
 - `docs/LOCAL_SETUP.md`
 - `docs/API_SPEC.md`
 - `docs/DEPLOYMENT.md`
+
+## GitHub'dan clone qilib ishga tushirish (har kim uchun)
+
+Quyidagi qadamlar bilan boshqa foydalanuvchi loyihani kochirib olib ishga tushira oladi.
+
+1. Repozitoriyani clone qiling:
+
+```bash
+git clone https://github.com/shukrullo0612/student-uchun-metodika.git
+cd student-uchun-metodika
+```
+
+1. Backend paketlarini o'rnating:
+
+```bash
+npm run install:backend
+```
+
+1. API ni tez rejimda ishga tushiring (in-memory DB):
+
+```bash
+npm run api:dev
+```
+
+1. Frontendni ishga tushiring:
+
+- `index.html` ni Live Server bilan oching (masalan `http://127.0.0.1:5500`).
+
+1. Login qiling:
+
+- `goibnazarovshukrullo@gmail.com` / `admin123`
+- `dilraborustamova048@gmail.com` / `dilrabo6880`
+
+## Ikkinchi GitHub akkauntga nusxa chiqarish
+
+1. Ikkinchi akkauntda bo'sh repo yarating (README/.gitignore qo'shmasdan).
+1. Lokal loyihada quyidagilarni bajaring:
+
+```bash
+git remote add lifeandwork07 https://github.com/lifeandwork07/student-uchun-metodika.git
+git push -u lifeandwork07 main
+```
+
+Yoki eng osoni: GitHub interfeysida `Fork` tugmasi orqali shu repozitoriyani to'g'ridan-to'g'ri ikkinchi akkauntga ko'chiring.
+
+## Litsenziya
+
+Loyiha MIT litsenziyasi bilan tarqatiladi. Demak, boshqa foydalanuvchilar loyiha kodini ko'chirib olib ishlatishi va moslashtirishi mumkin.
